@@ -6,7 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = {
+        "http://localhost:3000", // local React dev
+        "https://ecommerce-mu-beryl-47.vercel.app" // deployed frontend on Vercel
+})
 @RestController
 @RequestMapping("/api/products")
 public class ProductController {

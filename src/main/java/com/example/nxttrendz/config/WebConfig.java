@@ -13,23 +13,24 @@ public class WebConfig implements WebMvcConfigurer {
         // Handler for product images
         registry.addResourceHandler("/IMAGES/**")
                 .addResourceLocations("classpath:/static/IMAGES/");
-        
+
         // Handler for all React static files
         registry.addResourceHandler("/**")
                 .addResourceLocations("classpath:/static/", "classpath:/public/");
     }
-    
+
     @Override
     public void addCorsMappings(CorsRegistry registry) {
-        // IMPORTANT: Update this list upon production deployment!
+        // ✅ Add your actual deployed frontend URL here
         String[] allowedOrigins = {
-            "http://localhost:3000", // Local React dev server
-            "https://your-production-frontend.com" // Placeholder
+            "http://localhost:3000", // local React dev server
+            "https://ecommerce-mu-beryl-47.vercel.app" // your deployed Vercel frontend
         };
 
-        registry.addMapping("/**") 
-                .allowedOrigins(allowedOrigins) 
+        registry.addMapping("/**")
+                .allowedOrigins(allowedOrigins)
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
-                .allowedHeaders("*");
+                .allowedHeaders("*")
+                .allowCredentials(true); // important if you use cookies or sessions
     }
 }

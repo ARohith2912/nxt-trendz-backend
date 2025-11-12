@@ -8,7 +8,10 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/cart")
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = {
+        "http://localhost:3000", // local React dev
+        "https://ecommerce-mu-beryl-47.vercel.app" // deployed frontend on Vercel
+})
 public class CartController {
     private final CartService service;
     public CartController(CartService service) { this.service = service; }

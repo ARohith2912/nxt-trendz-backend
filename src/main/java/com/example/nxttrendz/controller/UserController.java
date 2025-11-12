@@ -6,8 +6,11 @@ import org.springframework.web.bind.annotation.*;
 import java.util.*;
 
 @RestController
-@RequestMapping("/api/auth") // ✅ matches frontend URL
-@CrossOrigin(origins = "http://localhost:3000") // or 5173 if using Vite
+@RequestMapping("/api/auth")
+@CrossOrigin(origins = {
+        "http://localhost:3000", // local React dev
+        "https://ecommerce-mu-beryl-47.vercel.app" // deployed frontend on Vercel
+})
 public class UserController {
 
     private final UserService service;
@@ -41,3 +44,4 @@ public class UserController {
         return service.getAllUsers();
     }
 }
+

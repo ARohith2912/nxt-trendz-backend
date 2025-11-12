@@ -7,7 +7,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/categories")
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = {
+        "http://localhost:3000", // local React dev
+        "https://ecommerce-mu-beryl-47.vercel.app" // deployed frontend on Vercel
+})
 public class CategoryController {
     private final CategoryRepository repo;
     public CategoryController(CategoryRepository repo) { this.repo = repo; }
