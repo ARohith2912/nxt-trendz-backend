@@ -22,6 +22,8 @@ public class CartService {
 
     @Autowired
     private UserRepository userRepository;
+    
+    
 
     // ... (Existing getCartItems and addItemToCart methods remain unchanged)
 
@@ -56,25 +58,28 @@ public class CartService {
     }
 
     public CartItem addItemToCart(Long userId, Long productId, int quantity) {
-        
-        // 1. Look up User and Product
+
+        // 1️⃣ Fetch user and product from database
         User user = userRepository.findById(userId).orElse(null);
         Product product = productRepository.findById(productId).orElse(null);
 
         if (user == null || product == null || quantity <= 0) {
-            // In a real application, throw an appropriate exception
-            return null; 
+            throw new IllegalArgumentException("Invalid user, product, or quantity");
         }
 
-        // 2. Check if the item already exists in the cart
+        // 2️⃣ Check availability status
+        if (product.getAvailability() != null &&
+            product.getAvailability().equalsIgnoreCase("Out of Stock")) {
+            throw new RuntimeException("Product is out of stock and cannot be added to cart");
+        }
+
+        // 3️⃣ Check if cart item already exists for this product and user
         CartItem existingItem = cartItemRepository.findByUserIdAndProductId(userId, productId);
 
         if (existingItem != null) {
-            // Item exists: update quantity and save
             existingItem.setQuantity(existingItem.getQuantity() + quantity);
             return cartItemRepository.save(existingItem);
         } else {
-            // Item is new: create a new CartItem and save
             CartItem newItem = new CartItem();
             newItem.setUser(user);
             newItem.setProduct(product);
@@ -84,4 +89,5 @@ public class CartService {
             return cartItemRepository.save(newItem);
         }
     }
+
 }
