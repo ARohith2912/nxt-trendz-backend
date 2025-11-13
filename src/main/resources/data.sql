@@ -16,7 +16,7 @@ VALUES
 
 
 
-('Men Shirt', 'Levis', 999.0, 'IMAGES/shirt.jpg', 4, 'In Stock', 'Comfort fit shirt', 250, 2, true),
+('Men Shirt', 'Levis', 999.0, 'IMAGES/shirt.jpg', 4, 'out of Stock', 'Comfort fit shirt', 250, 2, true),
 ('Men_Shirt', 'Wood', 999.0, 'IMAGES/T-Shirt.jpg', 4, 'In Stock', 'Comfort fit shirt', 250, 2, false),
 
 ('Apple', 'Kashmir', 499.0, 'IMAGES/Apple.jpg', 5, 'In Stock', '10 Apples healthy product', 80, 3, false),
