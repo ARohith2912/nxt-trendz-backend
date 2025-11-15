@@ -1,8 +1,4 @@
 package com.example.nxttrendz.model;
-
-
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import jakarta.persistence.*;
@@ -19,6 +15,8 @@ public class Product {
     private String title;
     private String brand;
     private Double price;
+    private String availability; // e.g. "In Stock" or "Out of Stock"
+
  
     // 👇 FIX: This maps the Java field 'imageUrl' to the DB column 'image_url'
     @Column(name = "image_url") 
@@ -26,7 +24,7 @@ public class Product {
     private String imageUrl;
 
     private int rating;
-    private String availability;
+  
     private String description;
     private int totalReviews;
     private Long categoryId;
@@ -55,6 +53,12 @@ public class Product {
 	public void setPrice(Double price) {
 		this.price = price;
 	}
+	public String getAvailability() {
+		return availability;
+	}
+	public void setAvailability(String availability) {
+		this.availability = availability;
+	}
 	public String getImageUrl() {
 		return imageUrl;
 	}
@@ -66,12 +70,6 @@ public class Product {
 	}
 	public void setRating(int rating) {
 		this.rating = rating;
-	}
-	public String getAvailability() {
-		return availability;
-	}
-	public void setAvailability(String availability) {
-		this.availability = availability;
 	}
 	public String getDescription() {
 		return description;
@@ -97,8 +95,5 @@ public class Product {
 	public void setPrimeDeal(boolean primeDeal) {
 		this.primeDeal = primeDeal;
 	}
-    
-    
-    // NOTE: Manual getters/setters were removed as @Data provides them.
-    // Ensure Lombok is correctly installed and configured in your IDE/build.
+  
 }
